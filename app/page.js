@@ -5,7 +5,9 @@ import Image from "next/image";
 export default function Home() {
   return (
   <div>
-    <App/>
+   <h1>
+    hello
+   </h1>
   </div>
   );
 }
