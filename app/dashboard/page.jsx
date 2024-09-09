@@ -11,7 +11,6 @@ const generateFakeRegistrations = (num) => {
       companyEmail: faker.internet.email(),
       companyWebsite: faker.internet.url(),
       companyAddress: faker.address.streetAddress(),
-      // companySize: faker.datatype.number({ min: 1, max: 1000 }),
       pitchTitle: faker.lorem.words(),
       pitchDescription: faker.lorem.paragraphs(2),
       marketOpportunity: faker.lorem.sentences(2),
@@ -46,44 +45,55 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen p-6">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">Registration Dashboard</h2>
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white shadow-md rounded-lg">
-          <thead className="bg-gray-200">
+    <div className="bg-gray-50 min-h-screen p-6 ">
+      <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Registration Dashboard</h2>
+      <div className="overflow-x-auto scrollbar-hide">
+        <table className="min-w-full bg-white shadow-lg rounded-lg">
+          <thead className="bg-gray-100">
             <tr>
-              <th className="py-2 px-4 border-b">Company Name</th>
-              <th className="py-2 px-4 border-b">Email</th>
-              <th className="py-2 px-4 border-b">Website</th>
-              <th className="py-2 px-4 border-b">Address</th>
-              <th className="py-2 px-4 border-b">Size</th>
-              <th className="py-2 px-4 border-b">Pitch Title</th>
-              <th className="py-2 px-4 border-b">Pitch Description</th>
-              <th className="py-2 px-4 border-b">Market Opportunity</th>
-              <th className="py-2 px-4 border-b">Competitive Advantage</th>
-              <th className="py-2 px-4 border-b">Funding Needs</th>
-              <th className="py-2 px-4 border-b">Contact Name</th>
-              <th className="py-2 px-4 border-b">Contact Phone</th>
-              <th className="py-2 px-4 border-b">LinkedIn</th>
+              <th className="py-4 px-6 text-left text-gray-600 font-semibold w-1/6">Company Name</th>
+              <th className="py-4 px-6 text-left text-gray-600 font-semibold w-1/6">Email</th>
+              <th className="py-4 px-6 text-left text-gray-600 font-semibold w-1/6">Website</th>
+              <th className="py-4 px-6 text-left text-gray-600 font-semibold w-1/6">Address</th>
+              <th className="py-4 px-6 text-left text-gray-600 font-semibold w-1/6">Size</th>
+              <th className="py-4 px-6 text-left text-gray-600 font-semibold w-1/6">Pitch Title</th>
+              <th className="py-4 px-6 text-left text-gray-600 font-semibold w-1/3">Pitch Description</th>
+              <th className="py-4 px-6 text-left text-gray-600 font-semibold w-1/6">Market Opportunity</th>
+              <th className="py-4 px-6 text-left text-gray-600 font-semibold w-1/6">Competitive Advantage</th>
+              <th className="py-4 px-6 text-left text-gray-600 font-semibold w-1/6">Funding Needs</th>
+              <th className="py-4 px-6 text-left text-gray-600 font-semibold w-1/6">Contact Name</th>
+              <th className="py-4 px-6 text-left text-gray-600 font-semibold w-1/6">Contact Phone</th>
+              <th className="py-4 px-6 text-left text-gray-600 font-semibold w-1/6">LinkedIn</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="divide-y divide-gray-200">
             {currentRegistrations.map((reg, index) => (
-              <tr key={index}>
-                <td className="py-2 px-4 border-b">{reg.companyName}</td>
-                <td className="py-2 px-4 border-b">{reg.companyEmail}</td>
-                <td className="py-2 px-4 border-b">{reg.companyWebsite}</td>
-                <td className="py-2 px-4 border-b">{reg.companyAddress}</td>
-                <td className="py-2 px-4 border-b">{reg.companySize}</td>
-                <td className="py-2 px-4 border-b">{reg.pitchTitle}</td>
-                <td className="py-2 px-4 border-b">{reg.pitchDescription}</td>
-                <td className="py-2 px-4 border-b">{reg.marketOpportunity}</td>
-                <td className="py-2 px-4 border-b">{reg.competitiveAdvantage}</td>
-                <td className="py-2 px-4 border-b">{reg.fundingNeeds}</td>
-                <td className="py-2 px-4 border-b">{reg.contactName}</td>
-                <td className="py-2 px-4 border-b">{reg.contactPhone}</td>
-                <td className="py-2 px-4 border-b">
-                  <a href={reg.contactLinkedIn} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+              <tr key={index} className={`${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}>
+                <td className="py-4 px-6 text-gray-700 w-1/6">{reg.companyName}</td>
+                <td className="py-4 px-6 text-gray-700 w-1/6">{reg.companyEmail}</td>
+                <td className="py-4 px-6 text-blue-600 hover:underline w-1/6">
+                  <a href={reg.companyWebsite} target="_blank" rel="noopener noreferrer">{reg.companyWebsite}</a>
+                </td>
+                <td className="py-4 px-6 text-gray-700 w-1/6">{reg.companyAddress}</td>
+                <td className="py-4 px-6 text-gray-700 w-1/6">{reg.companySize}</td>
+                <td className="py-4 px-6 text-gray-700 w-1/6">{reg.pitchTitle}</td>
+                <td className="py-4 px-6 text-gray-700 w-1/6 truncate text-wrap">
+                  {reg.pitchDescription.length > 150 ? (
+                    <>
+                      {reg.pitchDescription.substring(0, 150)}...{' '}
+                      <a href="#" className="text-blue-500 hover:underline">Read more</a>
+                    </>
+                  ) : (
+                    reg.pitchDescription
+                  )}
+                </td>
+                <td className="py-4 px-6 text-gray-700 w-1/6">{reg.marketOpportunity}</td>
+                <td className="py-4 px-6 text-gray-700 w-1/6">{reg.competitiveAdvantage}</td>
+                <td className="py-4 px-6 text-gray-700 w-1/6">{reg.fundingNeeds}</td>
+                <td className="py-4 px-6 text-gray-700 w-1/6">{reg.contactName}</td>
+                <td className="py-4 px-6 text-gray-700 w-1/6">{reg.contactPhone}</td>
+                <td className="py-4 px-6 w-1/6">
+                  <a href={reg.contactLinkedIn} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
                     LinkedIn Profile
                   </a>
                 </td>
@@ -91,11 +101,17 @@ const Dashboard = () => {
             ))}
           </tbody>
         </table>
-        <div className="mt-4 flex justify-center">
+
+        {/* Pagination */}
+        <div className="mt-8 flex justify-center">
           {Array.from({ length: totalPages }, (_, index) => (
             <button
               key={index}
-              className={`mx-1 px-3 py-1 rounded ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}
+              className={`mx-1 px-4 py-2 rounded-full text-sm font-medium ${
+                currentPage === index + 1
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+              }`}
               onClick={() => handleClick(index + 1)}
             >
               {index + 1}
