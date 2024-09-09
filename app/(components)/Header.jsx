@@ -14,10 +14,10 @@ const menuItems = [
 const menuItems2 = [
   { name: "Home", href: "/home" },
   { name: "About", href: "#" },
-  { name: "Services", href: "#" },
 ];
 const menuItems3 = [
   { name: "Contact Us", href: "#" },
+  { name: "Register", href: "/register" },
 ];
 
 function Header() {
