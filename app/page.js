@@ -1,13 +1,17 @@
-import { Button } from "@/components/ui/button";
-import App from "next/app";
-import Image from "next/image";
+'use client'
+import { useRouter } from 'next/navigation' // Correct import for Next.js 13+
+import { useEffect } from 'react'
 
-export default function Home() {
+const Home = () => {
+  const router = useRouter()
+
+  useEffect(() => {
+    router.push('/home') // Redirect to /home
+  }, []) // Ensure useEffect only triggers when router is available
+
   return (
-  <div>
-   <h1>
-    hello
-   </h1>
-  </div>
-  );
+    <div>Redirecting...</div> // Inform user that redirection is happening
+  )
 }
+
+export default Home
